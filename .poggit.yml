@@ -1,0 +1,8 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/ValresMC/RandomMessages
+build-by-default: true
+branches:
+- main
+projects:
+  RandomMessages:
+    path: ""
+...
