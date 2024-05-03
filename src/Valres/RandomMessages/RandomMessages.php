@@ -8,18 +8,18 @@ use pocketmine\utils\Config;
 
 class RandomMessages extends PluginBase
 {
-    protected function onEnable(): void
-    {
+    private array $messages = [];
+    private int $timer = 0;
+
+    protected function onEnable(): void {
         $this->getLogger()->info("by Valres est lancé !");
         $this->saveDefaultConfig();
-        $this->getScheduler()->scheduleRepeatingTask(new ClosureTask(function (){
-            $messages = $this->config()->get("messages");
-            $this->getServer()->broadcastMessage($messages[array_rand($messages)]);
-        }), $this->config()->get("time")*20);
-    }
 
-    public function config(): Config
-    {
-        return new Config($this->getDataFolder()."config.yml", Config::YAML);
+        $this->messages = $this->getConfig()->get("messages");
+        $this->timer = $this->getConfig()->get("time");
+
+        $this->getScheduler()->scheduleRepeatingTask(new ClosureTask(function (): void {
+            $this->getServer()->broadcastMessage($this->messages[array_rand($this->messages)]);
+        }), $this->timer * 20);
     }
 }
