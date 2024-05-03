@@ -4,7 +4,6 @@ namespace Valres\RandomMessages;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\scheduler\ClosureTask;
-use pocketmine\utils\Config;
 
 class RandomMessages extends PluginBase
 {
